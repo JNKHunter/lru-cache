@@ -26,12 +26,12 @@ public class LRUCache {
         this.capacity = capacity;
     }
 
-    private int getSize(){
+    private int getSize() {
         return count;
     }
 
-    public int get(int key){
-        if(map.containsKey(key)) {
+    public int get(int key) {
+        if (map.containsKey(key)) {
             Node found = map.get(key);
 
             //Remove found from it's place in the linked list
@@ -51,19 +51,19 @@ public class LRUCache {
     }
 
     public void put(int key, int value) {
-        if(map.containsKey(key)) {
+        if (map.containsKey(key)) {
             Node found = map.get(key);
             found.setValue(value);
         } else {
             count++;
-            if(count > capacity) {
+            if (count > capacity) {
                 count = capacity;
                 //Remove tail.prev node since we are at capacity and it is the least recently used
                 Node nodeToRemove = tail.getPrev();
                 nodeToRemove.getPrev().setNext(tail);
                 tail.setPrev(nodeToRemove.getPrev());
                 map.remove(nodeToRemove.getKey());
-                
+
             }
             //Put the new node at it's proper place at the head of the list
             Node newNode = new Node(key, value);

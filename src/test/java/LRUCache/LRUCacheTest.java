@@ -13,17 +13,17 @@ public class LRUCacheTest {
     private LRUCache cache;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         cache = new LRUCache(3);
     }
 
     @Test
-    public void testInitialCapacity(){
+    public void testInitialCapacity() {
         assertEquals(0, cache.getCount());
     }
 
     @Test
-    public void testCapacity(){
+    public void testCapacity() {
         cache.put(1, 1);
         assertEquals(1, cache.getCount());
         cache.put(1, 1);
@@ -45,10 +45,10 @@ public class LRUCacheTest {
         cache.put(3, 30);
         assertEquals(30, cache.get(3));
         assertEquals(-1, cache.get(4));
-        cache.put(4,40);
+        cache.put(4, 40);
         assertEquals(40, cache.get(4));
         assertEquals(-1, cache.get(1));
-        cache.put(5,50);
+        cache.put(5, 50);
         assertEquals(50, cache.get(5));
         assertEquals(40, cache.get(4));
         assertEquals(30, cache.get(3));
