@@ -10,11 +10,11 @@ import static org.junit.Assert.*;
  */
 public class LRUCacheTest {
 
-    private LRUCache cache;
+    private LRUCache<Long> cache;
 
     @Before
     public void setUp() {
-        cache = new LRUCache(3);
+        cache = new LRUCache<Long>(3);
     }
 
     @Test
@@ -24,37 +24,37 @@ public class LRUCacheTest {
 
     @Test
     public void testCapacity() {
-        cache.put(1, 1);
+        cache.put(1, 1L);
         assertEquals(1, cache.getCount());
-        cache.put(1, 1);
+        cache.put(1, 1L);
         assertEquals(1, cache.getCount());
-        cache.put(2, 2);
+        cache.put(2, 2L);
         assertEquals(2, cache.getCount());
-        cache.put(3, 3);
+        cache.put(3, 3L);
         assertEquals(3, cache.getCount());
-        cache.put(4, 4);
+        cache.put(4, 4L);
         assertEquals(3, cache.getCount());
     }
 
     @Test
     public void testPut() {
-        cache.put(1, 10);
-        assertEquals(10, cache.get(1));
-        cache.put(2, 20);
-        assertEquals(20, cache.get(2));
-        cache.put(3, 30);
-        assertEquals(30, cache.get(3));
-        assertEquals(-1, cache.get(4));
-        cache.put(4, 40);
-        assertEquals(40, cache.get(4));
-        assertEquals(-1, cache.get(1));
-        cache.put(5, 50);
-        assertEquals(50, cache.get(5));
-        assertEquals(40, cache.get(4));
-        assertEquals(30, cache.get(3));
-        assertEquals(-1, cache.get(2));
-        assertEquals(-1, cache.get(1));
-        assertEquals(3, cache.getCount());
+        cache.put(1L, 10L);
+        assertEquals(10L, (Object)cache.get(1L));
+        cache.put(2L, 20L);
+        assertEquals(20L, (Object)cache.get(2L));
+        cache.put(3L, 30L);
+        assertEquals(30L, (Object)cache.get(3L));
+        assertEquals(null, (Object)cache.get(4L));
+        cache.put(4L, 40L);
+        assertEquals(40L, (Object)cache.get(4L));
+        assertEquals(null, (Object)cache.get(1L));
+        cache.put(5L, 50L);
+        assertEquals(50L, (Object)cache.get(5L));
+        assertEquals(40L, (Object)cache.get(4L));
+        assertEquals(30L, (Object)cache.get(3L));
+        assertEquals(null, (Object)cache.get(2L));
+        assertEquals(null, (Object)cache.get(1L));
+        assertEquals(3L, cache.getCount());
     }
 
 }
